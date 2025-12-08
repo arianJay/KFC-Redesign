@@ -1,0 +1,6 @@
+{
+  "/coupons/page": "app/coupons/page.js",
+  "/menu/page": "app/menu/page.js",
+  "/page": "app/page.js",
+  "/store-locator/page": "app/store-locator/page.js"
+}
