@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Menu, X, ShoppingCart, User } from "lucide-react"
 import { useCart } from "@/app/context/cart-context"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -9,6 +10,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { getTotalItems } = useCart()
+  const pathname = usePathname()
   const totalItems = getTotalItems()
 
   const navItems = [
@@ -16,6 +18,12 @@ export default function Header() {
     { label: "Coupons", href: "/coupons" },
     { label: "Find KFC", href: "/store-locator" },
   ]
+
+  const isActive = (href: string) => {
+    if (href === "/" && pathname === "/") return true
+    if (href !== "/" && pathname.startsWith(href)) return true
+    return false
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
@@ -36,7 +44,11 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="font-semibold text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-3 py-2"
+                className={`font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-3 py-2 ${
+                  isActive(item.href)
+                    ? "text-primary bg-primary/10 border-b-2 border-primary"
+                    : "text-foreground hover:text-primary hover:bg-primary/5"
+                }`}
               >
                 {item.label}
               </Link>
@@ -91,7 +103,11 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 font-semibold text-foreground hover:bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset"
+                  className={`block px-4 py-3 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset ${
+                    isActive(item.href)
+                      ? "text-primary bg-primary/10 border-l-4 border-primary"
+                      : "text-foreground hover:bg-muted hover:text-primary"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
