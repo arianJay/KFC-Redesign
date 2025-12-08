@@ -41,20 +41,22 @@ export default function HowToOrder() {
               className="bg-card rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center text-primary mb-4">
-                  {step.icon}
+                <div className="w-16 h-16 bg-red-50 dark:bg-red-950/20 rounded-full flex items-center justify-center mb-4">
+                  <div className="text-red-600 dark:text-red-400">
+                    {step.icon}
+                  </div>
                 </div>
                 <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
                 <p className="text-secondary text-sm leading-relaxed">{step.description}</p>
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-8 h-1 bg-primary bg-opacity-20" />
+                  <div className="hidden lg:block absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-8 h-1 bg-red-200 dark:bg-red-800" />
                 )}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 bg-primary bg-opacity-10 border border-primary border-opacity-20 rounded-xl p-8 text-center">
+        <div className="mt-12 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-foreground mb-3">Ready to Order?</h3>
           <p className="text-secondary mb-6 max-w-2xl mx-auto">
             Start exploring our menu and add your favorite items to your cart. Fast delivery or convenient pickup
