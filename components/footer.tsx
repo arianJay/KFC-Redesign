@@ -124,9 +124,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-muted pt-8 text-center text-muted-foreground">
-          <p>&copy; 2025 KFC Philippines. All rights reserved.</p>
-          <p className="text-sm mt-2">Designed with accessibility and usability in mind.</p>
+        <div className="border-t border-muted pt-8 text-center">
+          <p className="text-foreground/80 font-medium">&copy; 2025 KFC Philippines. All rights reserved.</p>
+          <p className="text-sm mt-2 text-foreground/70">Designed with accessibility and usability in mind.</p>
         </div>
       </div>
     </footer>
