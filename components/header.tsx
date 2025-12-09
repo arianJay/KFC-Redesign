@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <nav aria-label="Main navigation" className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2"
@@ -39,7 +39,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <ul role="menubar" className="hidden md:flex gap-8">
+        <ul className="hidden md:flex gap-8">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
@@ -88,6 +88,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -95,26 +96,29 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <ul
-            role="menu"
-            className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden flex flex-col"
+          <nav
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="absolute top-full left-0 right-0 bg-background border-b border-border md:hidden"
           >
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`block px-4 py-3 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset ${
-                    isActive(item.href)
-                      ? "text-primary bg-primary/10 border-l-4 border-primary"
-                      : "text-foreground hover:bg-muted hover:text-primary"
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex flex-col">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`block px-4 py-3 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset ${
+                      isActive(item.href)
+                        ? "text-primary bg-primary/10 border-l-4 border-primary"
+                        : "text-foreground hover:bg-muted hover:text-primary"
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         )}
       </nav>
     </header>

@@ -16,7 +16,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-background flex flex-col">
       <Header />
 
-      <div className="flex-1 py-8 md:py-12 px-4">
+      <div id="main-content" className="flex-1 py-8 md:py-12 px-4">
         <div className="container mx-auto">
           <div className="mb-8">
             <Link href="/" className="text-primary font-semibold hover:underline">

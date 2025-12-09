@@ -6,6 +6,7 @@ import "./globals.css"
 import { CartProvider } from "@/app/context/cart-context"
 import { OrderProvider } from "@/app/context/order-context"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SkipLink } from "@/components/accessibility/skip-link"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
+        <SkipLink href="#main-content">Skip to main content</SkipLink>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <CartProvider>
             <OrderProvider>
